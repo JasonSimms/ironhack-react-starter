@@ -1,10 +1,13 @@
 import React from 'react'
+import Navigation from './Navigation'
+import Main from './Main'
 
 class Application extends React.Component {
     render() {
         return (
-            <div className="application">
-                <h1>Our first React Component, which is in another file!</h1>
+            <div>
+                <Navigation />
+                <Main />
             </div>
         )
     }
