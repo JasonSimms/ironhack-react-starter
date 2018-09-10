@@ -2,25 +2,37 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 class Main extends Component {
-    render() {
-        const currentDate = moment().subtract(5, 'hours')
+    constructor(props) {
+        super(props)
 
-        let greeting
-        if (currentDate.hours() < 12) {
-            greeting = <p>Good morning!</p>
-        } else if (currentDate.hours() < 18) {
-            greeting = <p>Good afternoon!</p>
-        } else {
-            greeting = <p>Good evening!</p>
+        this.state = {
+            currentDate: moment(),
         }
+
+        this._updateTime = this._updateTime.bind(this)
+    }
+
+    render() {
+        console.log('RENDERED MAIN CLASS')
 
         return (
             <div className="main">
                 <h1>Say hello to ReactJS</h1>
                 <p>You will learn something... hopefully.</p>
-                {greeting}
+                {this._renderTime()}
+                <button onClick={this._updateTime}>CLick me to update the time!</button>
             </div>
         )
+    }
+
+    _updateTime() {
+        this.setState({
+            currentDate: moment(),
+        })
+    }
+
+    _renderTime() {
+        return <h3>{this.state.currentDate.format('DD.MM.YYYY HH:mm:ss')}</h3>
     }
 }
 
