@@ -12,15 +12,20 @@ class Main extends Component {
         this._updateTime = this._updateTime.bind(this)
     }
 
-    render() {
-        console.log('RENDERED MAIN CLASS')
+    componentDidMount() {
+        this.timeInterval = setInterval(this._updateTime, 1000)
+    }
 
+    componentWillUnmount() {
+        clearInterval(this.timeInterval)
+    }
+
+    render() {
         return (
             <div className="main">
                 <h1>Say hello to ReactJS</h1>
                 <p>You will learn something... hopefully.</p>
                 {this._renderTime()}
-                <button onClick={this._updateTime}>CLick me to update the time!</button>
             </div>
         )
     }
